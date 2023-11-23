@@ -120,6 +120,7 @@ FROM SC；
 ---------------------
 
 **例题6 查询考试成绩有不及格的学生的学号** #WHERE关键字
+
 ```sql
 SELECT DISTINCT Sno
 FROM  SC
@@ -128,6 +129,7 @@ WHERE Grade<60；
 -------
 
 **例题7 查询年龄在20~23岁（包括20岁和23岁）之间的学生的姓名、系别和年龄**  #BETWEEN_AND   
+
 ```sql
 SELECT Sname，Sdept，Sage
 FROM Student
@@ -136,6 +138,7 @@ WHERE Sage BETWEEN 20 AND 23
 ---------------
 
 **例题8 查询信息系（IS）、数学系（MA）和计算机科学系（CS）学生的姓名和性别。** #IN_NOTIN   
+
 ```sql
 SELECT Sname，Ssex
 FROM Student
@@ -147,9 +150,24 @@ FROM Student
 WHERE Sdept NOT IN ( 'IS'，'MA'，'CS' );
 ```  
 --------------
+## 三、 数据修改更新  
+*例题：将学号10001学生的年龄改为20*   
+```sql
+UPDATE student
+SET sage = 20
+WHERE sno = 10001;
+```   
+
+
+
+
+
+
+
 ## 字符匹配  
 ### 1.匹配串为固定字符串
 **例题9 查询学号为200215121的学生的详细情况**  #固定字符匹配_LIKE关键字
+
 ```sql
 SELECT *   
 FROM  Student 
@@ -162,12 +180,14 @@ WHERE Sno = ' 200215121 '；
 ------------
 ### 2.匹配串为含通配符的字符串  #
 **例题10 查询所有姓刘学生的姓名、学号和性别**  #通配字符匹配
+
 ```sql
 SELECT Sname，Sno，Ssex
 FROM Student
 WHERE Sname LIKE ‘刘%’；
 ```
 **例题11 查询名字中第2个字为"阳"字的学生的姓名和学号**  
+
 ```sql
 SELECT Sname，Sno
 FROM Student
@@ -176,6 +196,7 @@ WHERE Sname LIKE ‘__ 阳%’；
 ------------
 ### 3.使用换码字符将通配符转义为普通字符  
 **例题12 查询以"DB_"开头，且倒数第3个字符为 i的课程的详细情况**  #转换字符：ESCAPE
+
 ```sql
 SELECT  *
 FROM Course
@@ -236,3 +257,30 @@ WHER Sno='200215012' AND SC.Cno=Course.Cno;
 ---------------
 ## GROUP BY子句   
 
+*例题：求各个课程号及相应的选课人数。  
+```sql
+SELECT Cno，COUNT(Sno)
+FROM SC
+GROUP BY Cno；
+```  
+```
+结果：
+    cno  count(sno)
+    1     22
+    2     34
+    3     44
+    4     33
+```  
+
+*例题：查询选修了3门以上课程的学生学号*
+```sql
+SELECT Sno
+FROM SC
+GROUP BY Sno
+HAVING COUNT(*) >3；
+```  
+
+### HAVING短语和WHERE子句的区别   
+- 作用对象不同
+- <font color="#f79646">WHERE子句</font>作用于<font color="#f79646">基表或视图</font>，从中选择满足条件的元组
+- <font color="#9bbb59">HAVING短语</font>作用于<font color="#9bbb59">组</font>，从中选择满足条件的组。

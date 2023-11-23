@@ -86,8 +86,12 @@ public class StudentDemo {
     }  
 }
 ```
-```
+
+```ad-note
+title: 解释
 在你的代码中，`Student s4 = new Student("林青霞",30);` 这行代码是在创建一个新的 `Student` 对象 `s4`。这里 `"林青霞"` 和 `30` 是传递给 `Student` 类构造函数的参数。
- 在 `Student` 类中，你定义了一个构造函数 `public Student(String name,int age)`，它接受两个参数：一个 `String` 类型的 `name` 和一个 `int` 类型的 `age`。当你使用 `new Student("林青霞",30)` 创建对象时，“林青霞” 和 30 这两个参数就会传递给这个构造函数，并分别赋值给 `this.name` 和 `this.age`。   
+
+在 `Student` 类中，你定义了一个构造函数 `public Student(String name,int age)`，它接受两个参数：一个 `String` 类型的 `name` 和一个 `int` 类型的 `age`。当你使用 `new Student("林青霞",30)` 创建对象时，“林青霞” 和 30 这两个参数就会传递给这个构造函数，并分别赋值给 `this.name` 和 `this.age`。
+
 ```
 #构造函数初始化 [[this关键字的使用.jpg]]
